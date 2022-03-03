@@ -1,0 +1,24 @@
+  html,
+  body {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+  }
+
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.full-width {
+  width: 100%;
+}
+
+.submit-success {
+  padding: 1rem;
+  border: 1px solid green;
+  border-radius: 4px;
+  margin-top: 1.5rem;
+  background-color: rgba(112, 190, 112, 0.753);
+}
+
+.form-buttons {
+  margin-top: 1.5rem;
+}
