@@ -24,7 +24,10 @@ export class AsyncValidationComponent {
     username: [
       '',
       [Validators.required, Validators.minLength(3)],
-      [UserValidator.usernameValidator(this.userService)],
+      {
+        validators: UserValidator.usernameValidator(this.userService),
+        updateOn: 'blur',
+      },
     ],
     pwd: ['', [Validators.required]],
     terms: ['', [Validators.required]],
