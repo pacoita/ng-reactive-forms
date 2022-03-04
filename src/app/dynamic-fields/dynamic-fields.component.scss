@@ -1,0 +1,30 @@
+.demo-content {
+  display: flex;
+  max-width: 750px;
+
+  .form-value {
+    margin-right: 2rem;
+    pre {
+        margin: 1rem 0 0 0;
+    }
+  }
+
+  form {
+    margin: 0 auto;
+    min-width: 400px;
+
+    .add-button {
+      margin-top: 1.5rem;
+    }
+
+    .address-group {
+      display: flex;
+      align-items: center;
+      margin: 1rem 0;
+
+      .address-actions {
+        margin-left: auto;
+      }
+    }
+  }
+}
