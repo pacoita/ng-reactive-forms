@@ -1,12 +1,10 @@
 <section>
-  <h2>Asynchronous validation</h2>
+  <h2>Asynchronous Validation</h2>
   <div class="card">
     <p class="demo-description">
-      In this example we want to validate our form based on the values of
-      different fields.<br />
-      For this, we created a custom validator that receives the parent
-      <code>FormGroup</code> (root element), in order to be able to access all
-      target <code>FormControls</code>.
+      In this example we want to validate our form using a server validation.<br /><br />
+      For this, we need to implement an <code>Asynchronous Validator</code> that will receive the 
+      server response and generate a <code>ValidationError</code> in case the validation is not succesful, <code>null</code>, otherwise.
     </p>
   </div>
   <div class="demo-content">
