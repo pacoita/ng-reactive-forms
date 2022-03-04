@@ -1,11 +1,11 @@
 <section>
   <h2>Cross field validation</h2>
   <div class="card">
-    <p>
+    <p class="demo-description">
       In this example we want to validate our form based on the values of
       different fields.<br />
-      We created a custom <code>OrderValidator</code> that will check teh
-      validity of our form before shipping the order.
+      For this, we created a custom validator that receives the parent <code>FormGroup</code> (root element), in order to be able
+      to access all target <code>FormControls</code>.
     </p>
   </div>
   <div class="demo-content">

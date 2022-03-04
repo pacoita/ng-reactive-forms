@@ -1,11 +1,32 @@
-  html,
-  body {
-    padding: 0;
-    margin: 0;
-    height: 100%;
-  }
+html,
+body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
 
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+code {
+  background-color: #d3d3d3;
+  padding: 1px 3px;
+  border-radius: 4px;
+}
+
+.card {
+  all: unset;
+  border-radius: 4px;
+  border: 1px solid #eee;
+  background-color: #fafafa;  
+  margin: 0 8px 16px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  line-height: 24px;
+}
 
 .full-width {
   width: 100%;
