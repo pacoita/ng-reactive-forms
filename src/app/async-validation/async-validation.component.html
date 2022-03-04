@@ -30,15 +30,17 @@
           />
         </mat-form-field>
         <mat-form-field class="width-80">
-          <mat-label>Email</mat-label>
-          <input
-            matInput
-            placeholder="my-great@email.com"
-            formControlName="email"
-          />
-          <mat-error *ngIf="email?.hasError('required')">{{
-            "Field required!"
-          }}</mat-error>
+          <mat-label>Username</mat-label>
+          <input matInput formControlName="username" />
+          <mat-error *ngIf="username?.hasError('required')">
+              Field required!
+            </mat-error>
+          <mat-error *ngIf="username?.hasError('minlength')">
+              Username too short!
+            </mat-error>
+          <mat-error *ngIf="username?.hasError('usernameExists')">
+            Unfortunately the username is already taken.
+          </mat-error>
         </mat-form-field>
         <mat-form-field class="width-80">
           <mat-label>Password</mat-label>
@@ -50,8 +52,8 @@
         <div class="terms-conditions">
           <mat-checkbox
             #tooltip="matTooltip"
-            matTooltip="Ah ah ah! Nobody will ever believe that..."
-            matTooltipPosition="right"
+            matTooltip="AH AH! NOBODY WILL EVEN BELIEVE THAT..."
+            matTooltipPosition="left"
             formControlName="terms"
             >I read the Terms and Conditions</mat-checkbox
           >
@@ -61,13 +63,16 @@
             mat-raised-button
             color="primary"
             type="submit"
-            [disabled]="registerForm?.invalid"
+            [disabled]="!registerForm?.valid"
           >
             Sign up
           </button>
-          <div class="submit-success" *ngIf="registerSuccess">
-            Yey! Can you already feel the coffeine calling?
+          <div class="spinner">
+            <mat-spinner diameter="30" *ngIf="username?.pending"></mat-spinner>
           </div>
+        </div>
+        <div class="submit-success" *ngIf="registerSuccess">
+          Yey! Can you already feel the coffeine?
         </div>
       </form>
       <div class="registration-image">

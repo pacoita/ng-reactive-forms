@@ -1,3 +1,5 @@
+import { UserService } from '../shared/services/user.service';
+import { UserValidator } from './validators/user-validator';
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 
@@ -9,27 +11,24 @@ import { FormBuilder, Validators } from '@angular/forms';
 export class AsyncValidationComponent {
   registerSuccess = false;
 
-  get email() {
-    return this.registerForm.get('email');
+  get username() {
+    return this.registerForm.get('username');
   }
   get pwd() {
     return this.registerForm.get('pwd');
   }
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private userService: UserService) {}
 
-  registerForm = this.fb.group(
-    {
-      name: [''],
-      email: ['', [Validators.required]],
-      pwd: ['', [Validators.required]],
-      terms: ['', [Validators.required]],
-    }
-    // {
-    //   validators: orderValidator,
-    //   // Using a generic version
-    //   //validators: equalityValidator('qty', 'qtyConfirm'),
-    // }
-  );
+  registerForm = this.fb.group({
+    name: [''],
+    username: [
+      '',
+      [Validators.required, Validators.minLength(3)],
+      [UserValidator.usernameValidator(this.userService)],
+    ],
+    pwd: ['', [Validators.required]],
+    terms: ['', [Validators.required]],
+  });
 
   register() {
     this.registerSuccess = true;

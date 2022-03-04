@@ -12,12 +12,21 @@
       align-items: center;
       justify-content: center;
       h2 {
-          margin-right: 1rem;
+        margin-right: 1rem;
       }
     }
     form {
       padding: 6rem 2.5rem 2.5rem 2.5rem;
       width: 50%;
+      .form-buttons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .spinner {
+            margin-left: 1.5rem;
+            width: 50px;
+        }
+      }
     }
 
     .registration-image {

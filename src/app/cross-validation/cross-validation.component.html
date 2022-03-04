@@ -43,7 +43,7 @@
         {{ "Quantity must match!" }}
       </mat-error>
       <div class="form-buttons">
-        <button mat-raised-button color="primary" type="submit" [disabled]="orderForm?.invalid">Order!</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!orderForm?.valid">Order!</button>
       </div>
     </form>
     <div class="submit-success" *ngIf="orderShipped">
