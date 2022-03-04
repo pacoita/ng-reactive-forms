@@ -17,6 +17,20 @@ const routes: Routes = [
         (m) => m.AsyncValidationModule
       ),
   },
+  {
+    path: 'dynamic',
+    loadChildren: () =>
+      import('./dynamic-fields/dynamic-fields.module').then(
+        (m) => m.DynamicFieldsModule
+      ),
+  },
+  {
+    path: 'dynamic-generation',
+    loadChildren: () =>
+      import('./dynamic-generation/dynamic-generation.module').then(
+        (m) => m.DynamicGenerationModule
+      ),
+  },
   { path: '**', redirectTo: 'cross' },
 ];
 
