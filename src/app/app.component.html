@@ -66,7 +66,7 @@
   .sidebar {
     margin: 0;
     width: 200px;
-    min-width: 150px;
+    min-width: 200px;
   }
 
   .sidebar ul {
@@ -77,7 +77,11 @@
   }
 
   .sidebar ul li {
-    margin-bottom: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .active-nav-link {
+    border-bottom: 2px solid #1976d2;
   }
 
   a,
@@ -106,10 +110,10 @@
   <div class="sidebar card">
     <h3>Examples available:</h3>
     <ul class="nav">
-      <li><a routerLink="cross">Cross Fields Validation</a></li>
-      <li><a routerLink="async">Asynchronous Validation</a></li>
-      <li><a routerLink="dynamic">Dynamic Form Fields</a></li>
-      <li><a routerLink="dynamic-generation">Dynamic Forms Generation</a></li>
+      <li><a routerLink="cross" [routerLinkActive]="'active-nav-link'">Cross Fields Validation</a></li>
+      <li><a routerLink="async" [routerLinkActive]="'active-nav-link'">Asynchronous Validation</a></li>
+      <li><a routerLink="dynamic" [routerLinkActive]="'active-nav-link'">Dynamic Form Fields</a></li>
+      <li><a routerLink="dynamic-generation" [routerLinkActive]="'active-nav-link'">Dynamic Forms Generation</a></li>
     </ul>
   </div>
 
