@@ -10,6 +10,13 @@ const routes: Routes = [
         (m) => m.CrossValidationModule
       ),
   },
+  {
+    path: 'async',
+    loadChildren: () =>
+      import('./async-validation/async-validation.module').then(
+        (m) => m.AsyncValidationModule
+      ),
+  },
   { path: '**', redirectTo: 'cross' },
 ];
 

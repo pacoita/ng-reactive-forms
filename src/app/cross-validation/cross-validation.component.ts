@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { orderValidator } from './validators/order-validator';
 
@@ -8,7 +8,7 @@ import { orderValidator } from './validators/order-validator';
   styleUrls: ['./cross-validation.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CrossValidationComponent implements OnInit {
+export class CrossValidationComponent {
   orderShipped = false;
 
   get coffeeName() {
@@ -23,7 +23,6 @@ export class CrossValidationComponent implements OnInit {
 
   constructor(private fb: FormBuilder) {}
 
-  ngOnInit(): void {}
   orderForm = this.fb.group(
     {
       coffeeName: ['', Validators.required],

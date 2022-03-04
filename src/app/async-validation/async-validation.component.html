@@ -1,0 +1,78 @@
+<section>
+  <h2>Cross field validation</h2>
+  <div class="card">
+    <p class="demo-description">
+      In this example we want to validate our form based on the values of
+      different fields.<br />
+      For this, we created a custom validator that receives the parent
+      <code>FormGroup</code> (root element), in order to be able to access all
+      target <code>FormControls</code>.
+    </p>
+  </div>
+  <div class="demo-content">
+    <div class="registration-container shadow">
+      <form
+        (ngSubmit)="register()"
+        [formGroup]="registerForm"
+        autocomplete="off"
+      >
+        <div class="title">
+          <h2>Coffee & co.</h2>
+          <mat-icon>local_cafe</mat-icon>
+        </div>
+
+        <mat-form-field class="width-80">
+          <mat-label>Name</mat-label>
+          <input
+            matInput
+            placeholder="Enter your name"
+            formControlName="name"
+          />
+        </mat-form-field>
+        <mat-form-field class="width-80">
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            placeholder="my-great@email.com"
+            formControlName="email"
+          />
+          <mat-error *ngIf="email?.hasError('required')">{{
+            "Field required!"
+          }}</mat-error>
+        </mat-form-field>
+        <mat-form-field class="width-80">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" formControlName="pwd" />
+          <mat-error *ngIf="pwd?.hasError('required')">{{
+            "Field required!"
+          }}</mat-error>
+        </mat-form-field>
+        <div class="terms-conditions">
+          <mat-checkbox
+            #tooltip="matTooltip"
+            matTooltip="Ah ah ah! Nobody will ever believe that..."
+            matTooltipPosition="right"
+            formControlName="terms"
+            >I read the Terms and Conditions</mat-checkbox
+          >
+        </div>
+        <div class="form-buttons">
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            [disabled]="registerForm?.invalid"
+          >
+            Sign up
+          </button>
+          <div class="submit-success" *ngIf="registerSuccess">
+            Yey! Can you already feel the coffeine calling?
+          </div>
+        </div>
+      </form>
+      <div class="registration-image">
+        <img src="assets/images/coffee_opt.jpg" alt="coffee_cups" />
+      </div>
+    </div>
+  </div>
+</section>

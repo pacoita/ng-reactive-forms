@@ -10,6 +10,15 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0 0 8px 0;
+  }
+
 code {
   background-color: #d3d3d3;
   padding: 1px 3px;
@@ -20,7 +29,7 @@ code {
   all: unset;
   border-radius: 4px;
   border: 1px solid #eee;
-  background-color: #fafafa;  
+  background-color: #fafafa;
   margin: 0 8px 16px;
   padding: 16px;
   display: flex;
@@ -28,8 +37,21 @@ code {
   line-height: 24px;
 }
 
+.shadow {
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+}
+
 .full-width {
   width: 100%;
+}
+
+.width-80 {
+  width: 80%;
+}
+
+.demo-content {
+  max-width: 450px;
+  margin: 1.5rem auto 0;
 }
 
 .submit-success {
@@ -42,4 +64,9 @@ code {
 
 .form-buttons {
   margin-top: 1.5rem;
+}
+
+.mat-checkbox-label {
+  font-size: 14px;
+  color: gray;
 }
