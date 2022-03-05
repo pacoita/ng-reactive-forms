@@ -1,6 +1,20 @@
 .role-switch {
-    margin: 1.5rem 0;
+  margin: 1.5rem 0;
+  .role-label {
+      margin-left: 1.5rem;
+  }
 }
 form {
-    padding: 1.5rem;
+  padding: 1.5rem;
+
+  .form-field {
+    margin: 0.5rem 0;
+  }
+  h3 {
+    margin-top: 2rem;
+    border-bottom: 2px solid #1976d2;
+    &:first-child {
+        margin-top: 0;
+    }
+  }
 }

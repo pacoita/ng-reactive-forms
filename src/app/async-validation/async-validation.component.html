@@ -43,9 +43,7 @@
         <mat-form-field class="width-80">
           <mat-label>Password</mat-label>
           <input matInput type="password" formControlName="pwd" />
-          <mat-error *ngIf="pwd?.hasError('required')">{{
-            "Field required!"
-          }}</mat-error>
+          <mat-error *ngIf="pwd?.hasError('required')">Field required!</mat-error>
         </mat-form-field>
         <div class="terms-conditions">
           <mat-checkbox
