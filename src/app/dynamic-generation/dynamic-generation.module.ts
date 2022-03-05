@@ -1,17 +1,11 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { DynamicGenerationRoutingModule } from './dynamic-generation-routing.module';
 import { DynamicGenerationComponent } from './dynamic-generation.component';
-
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  declarations: [
-    DynamicGenerationComponent
-  ],
-  imports: [
-    CommonModule,
-    DynamicGenerationRoutingModule
-  ]
+  declarations: [DynamicGenerationComponent],
+  imports: [SharedModule, DynamicGenerationRoutingModule],
 })
-export class DynamicGenerationModule { }
+export class DynamicGenerationModule {}

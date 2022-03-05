@@ -11,7 +11,8 @@
   <div class="demo-content">
     <div class="form-value">
       <mat-checkbox [formControl]="showValueCtrl">Show form value</mat-checkbox>
-      <pre *ngIf="showValueCtrl.value" class="card">{{ addressForm.value | json }}
+      <pre *ngIf="showValueCtrl.value" class="card">
+        {{ addressForm.value | json }}
         <span>
         💡 Nice for debugging!
         </span>
@@ -38,12 +39,14 @@
             type="button"
             mat-raised-button
             color="primary"
-            (click)="addAddress()"
-          >
+            (click)="addAddress()">
             Add address
           </button>
         </div>
         <div formArrayName="addresses">
+          <p *ngIf="addresses.controls.length > 2">
+            Seriously, how many addresses do you have??
+          </p>
           <div *ngFor="let address of addresses.controls; let i = index">
             <div [formGroupName]="i" class="address-group">
               <div class="address-fields">

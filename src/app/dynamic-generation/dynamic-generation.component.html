@@ -1,1 +1,73 @@
-<p>dynamic-generation works!</p>
+<section>
+  <h2>Dynamic Forms Generation</h2>
+  <div class="card">
+    <p class="demo-description">
+      The forms in this demo are completely dynamic and generated at runtime.<br /><br />
+      We invoke a backend API to receive the configuration file and use it to
+      create the <code>FormControls</code> and validation rules accordingly.<br />
+      By clicking on the button a new configuration is requested and the UI is
+      updated accordingly. This simlutaes the case where users with different
+      roles log into our app and view different forms bsaed on their role.
+    </p>
+  </div>
+  <div class="demo-content">
+    <div class="role-switch">
+      <button type="button" mat-raised-button color="primary" (click)="changeUserRole()">
+        Set form for {{ currentUserRole }}
+      </button>
+    </div>
+    <div class="form-container shadow" *ngIf="dynamicFields; else loader">
+      <form [formGroup]="form">
+        <div *ngFor="let dynamicField of dynamicFields; trackBy: trackById">
+          <div formGroupName="dynamicForm">
+            <!-- TODO: WHy formGroupName? -->
+            <ng-container [ngSwitch]="dynamicField.type">
+              <ng-container *ngSwitchCase="formFieldTypes.text">
+                <mat-form-field class="width-50">
+                  <mat-label>
+                    {{ dynamicField.label }}
+                  </mat-label>
+                  <!-- TODO: SHow an invalid element for the required case -->
+                  <input
+                    matInput
+                    [formControlName]="dynamicField.fieldId"
+                    [ngClass]="{
+                      'is-invalid':
+                        form.get(dynamicField.fieldId)?.touched &&
+                        form.get(dynamicField.fieldId)?.invalid
+                    }"
+                  />
+                </mat-form-field>
+              </ng-container>
+
+              <ng-container *ngSwitchCase="formFieldTypes.checkbox">
+                <mat-form-field class="width-50">
+                  <mat-checkbox [formControlName]="dynamicField.fieldId">
+                    {{ dynamicField.label }}
+                  </mat-checkbox>
+                </mat-form-field>
+              </ng-container>
+
+              <ng-container *ngSwitchCase="formFieldTypes.select">
+                <mat-form-field>
+                  <mat-label> {{ dynamicField.label }}</mat-label>
+                  <mat-select [formControlName]="dynamicField.fieldId">
+                    <mat-option
+                      *ngFor="let option of dynamicField.options"
+                      [value]="option.key"
+                    >
+                      {{ option.value }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </ng-container>
+            </ng-container>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <ng-template #loader>
+    <mat-spinner></mat-spinner>
+  </ng-template>
+</section>
