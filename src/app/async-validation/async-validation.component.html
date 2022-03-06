@@ -2,7 +2,9 @@
   <h2>Asynchronous Validation</h2>
   <div class="card">
     <p class="demo-description">
-      In this example we want to validate our form using a server validation.<br /><br />
+      Sometime we might need to validate our forms invoking a backend API. 
+      A typical case, for instance, is checking if a username or email has been already 
+      taken while registering a new account.<br /><br />
       For this, we need to implement an <code>Asynchronous Validator</code> that will receive the 
       server response and generate a <code>ValidationError</code> in case the validation is not succesful, <code>null</code>, otherwise.
     </p>
