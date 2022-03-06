@@ -1,7 +1,11 @@
+.deno-logo {
+  margin-right: 1rem;
+}
+
 .role-switch {
   margin: 1.5rem 0;
   .role-label {
-      margin-left: 1.5rem;
+    margin-left: 1.5rem;
   }
 }
 form {
@@ -14,7 +18,7 @@ form {
     margin-top: 2rem;
     border-bottom: 2px solid #1976d2;
     &:first-child {
-        margin-top: 0;
+      margin-top: 0;
     }
   }
 }

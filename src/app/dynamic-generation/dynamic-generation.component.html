@@ -6,10 +6,25 @@
       We invoke a backend API to receive the configuration file and use it to
       create the <code>FormControls</code> and validation rules accordingly.<br />
       By clicking on the button a new configuration is requested and the UI is
-      updated accordingly. This simulates users with different
-      roles logging into our app. The form fields are displayed based on the config files
+      updated accordingly. This simulates users with different roles logging
+      into our app. The form fields are displayed based on the config files
       coming from the server.
     </p>
+    <div class="center-flex">
+      <img
+      class="deno-logo"
+        src="assets/images/deno.png"
+        alt="deno_logo"
+        width="50px"
+        height="50px"
+      />
+      <p>
+        <strong>Bonus tip:</strong> you can choose to receive the form configs
+        from a local service or from a Deno server! In the local
+        <code>ConfigsService</code> file, you can choose from where the configs
+        should be delivered.
+      </p>
+    </div>
   </div>
   <div class="demo-content">
     <div class="role-switch">
@@ -17,17 +32,22 @@
         type="button"
         mat-raised-button
         color="primary"
-        (click)="changeUserRole()">
+        (click)="changeUserRole()"
+      >
         Switch role
       </button>
       <span class="role-label">Current role: {{ currentUserRole }}</span>
     </div>
     <div class="card shadow" *ngIf="dynamicFields; else loader">
-      <form [formGroup]="form" *ngIf="form">
+      <form (ngSubmit)="save()" [formGroup]="form" *ngIf="form">
         <h3>Details</h3>
         <div formGroupName="details">
           <div
-            *ngFor="let dynamicField of dynamicFields['details']; trackBy: trackById">
+            *ngFor="
+              let dynamicField of dynamicFields['details'];
+              trackBy: trackById
+            "
+          >
             <ng-container [ngSwitch]="dynamicField.type">
               <ng-container *ngSwitchCase="formFieldTypes.text">
                 <mat-form-field class="full-width">
@@ -65,14 +85,18 @@
         <h3>Address</h3>
         <div formGroupName="address">
           <div
-            *ngFor="let dynamicField of dynamicFields['address']; trackBy: trackById">
+            *ngFor="
+              let dynamicField of dynamicFields['address'];
+              trackBy: trackById
+            "
+          >
             <ng-container [ngSwitch]="dynamicField.type">
               <ng-container *ngSwitchCase="formFieldTypes.text">
                 <mat-form-field class="full-width">
                   <mat-label>
                     {{ dynamicField.label }}
                   </mat-label>
-                  <input matInput [formControlName]="dynamicField.fieldId"/>
+                  <input matInput [formControlName]="dynamicField.fieldId" />
                 </mat-form-field>
               </ng-container>
 
@@ -85,17 +109,44 @@
               </ng-container>
 
               <ng-container *ngSwitchCase="formFieldTypes.select">
-                <div class="width-50 form-field">
+                <mat-form-field class="width-50 form-field">
                   <mat-label> {{ dynamicField.label }}</mat-label>
                   <mat-select [formControlName]="dynamicField.fieldId">
                     <mat-option
-                      *ngFor="let option of dynamicField.options" [value]="option.key">
+                      *ngFor="let option of dynamicField.options"
+                      [value]="option.key"
+                    >
                       {{ option.value }}
                     </mat-option>
                   </mat-select>
-                </div>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                  <mat-label> {{ dynamicField.label }}</mat-label>
+                  <mat-select [formControlName]="dynamicField.fieldId">
+                    <mat-option
+                      *ngFor="let option of dynamicField.options"
+                      [value]="option.key"
+                    >
+                      {{ option.value }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
               </ng-container>
             </ng-container>
+          </div>
+        </div>
+        <div class="form-buttons">
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            [disabled]="!form?.valid"
+          >
+            Save
+          </button>
+          <div class="submit-success" *ngIf="saveSuccess">
+            Data saved correctly.
           </div>
         </div>
       </form>

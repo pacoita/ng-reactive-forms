@@ -46,6 +46,11 @@ code {
   display: flex;
 }
 
+.center-flex {
+  display: flex;
+  align-items: center;
+}
+
 .full-width {
   width: 100%;
 }

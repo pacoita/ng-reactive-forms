@@ -6,9 +6,9 @@ import {
 } from '@angular/forms';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormFieldConfig } from './model/form-field-config-model';
-import { EmployeeService } from './services/employee.service';
+import { ConfigsService } from './services/configs.service';
 import { FormFieldType } from './model/form-field-types.enum';
-import { catchError, of, Subject, takeUntil } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-dynamic-generation',
@@ -21,28 +21,16 @@ export class DynamicGenerationComponent implements OnInit, OnDestroy {
   formFieldTypes = FormFieldType;
   currentUserRole: 'user' | 'admin' = 'user';
 
+  saveSuccess = false;
+
   private destroy$ = new Subject<boolean>();
 
   constructor(
     private fb: FormBuilder,
-    private employeeService: EmployeeService
+    private employeeService: ConfigsService
   ) {}
 
   ngOnInit(): void {
-    // this.form = this.fb.group({
-    //   firstname: [
-    //     '',
-    //     {
-    //       validators: Validators.required,
-    //       updateOn: 'blur',
-    //     },
-    //   ],
-    //   lastname: ['', Validators.required],
-    //   email: [''],
-    //   addresses: this.fb.array([]),
-    //   rating: [],
-    // });
-
     this.setDynamicForm(this.currentUserRole);
   }
 
@@ -56,7 +44,12 @@ export class DynamicGenerationComponent implements OnInit, OnDestroy {
     this.setDynamicForm(newRole);
   }
 
+  save() {
+    this.saveSuccess = true;
+  }
+
   private setDynamicForm(userType: 'user' | 'admin') {
+    this.saveSuccess = false;
     // Here, we reset the form each time as we re-use it for the sake of demo.
     // This would not be necessary if we do not inject different configs into
     // teh same root FormGroup

@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { of, Observable } from 'rxjs';
@@ -7,10 +8,22 @@ import { FormFieldType } from '../model/form-field-types.enum';
 @Injectable({
   providedIn: 'root',
 })
-export class EmployeeService {
+export class ConfigsService {
+  constructor(private http: HttpClient) {}
+
   getDynamicFormFields(
     userType: 'user' | 'admin'
   ): Observable<{ [groupName: string]: FormFieldConfig[] }> {
+    return this.useLocalCode(userType);
+
+    // If you want to use Deno as server, you the method below.
+    // Remeber to start the Deno server first from the
+    // folder: backprivate useDenoServer() {}end/server.ts  (All details are in the Backend/README file)
+
+    // return this.useDenoServer(userType);
+  }
+
+  private useLocalCode(userType: 'user' | 'admin') {
     // The condition here is just for sake of example
     // to simulate a server providing different configs
     if (userType === 'admin') {
@@ -110,5 +123,11 @@ export class EmployeeService {
         ],
       });
     }
+  }
+
+  private useDenoServer(userType: 'user' | 'admin') {
+    return this.http.get<{ [groupName: string]: FormFieldConfig[] }>(
+      `http://localhost:8500/form-config/${userType}`
+    );
   }
 }
