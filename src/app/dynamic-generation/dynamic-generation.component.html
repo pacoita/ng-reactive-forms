@@ -40,15 +40,15 @@
     </div>
     <div class="card shadow" *ngIf="dynamicFields; else loader">
       <form (ngSubmit)="save()" [formGroup]="form" *ngIf="form">
+
+<!-- ********************  DETAILS SECTION ****************************************** -->          
         <h3>Details</h3>
         <div formGroupName="details">
           <div
             *ngFor="
-              let dynamicField of dynamicFields['details'];
-              trackBy: trackById
-            "
-          >
+              let dynamicField of dynamicFields['details']; trackBy: trackById">
             <ng-container [ngSwitch]="dynamicField.type">
+              
               <ng-container *ngSwitchCase="formFieldTypes.text">
                 <mat-form-field class="full-width">
                   <mat-label>
@@ -82,15 +82,15 @@
             </ng-container>
           </div>
         </div>
+
+<!-- ********************  ADDRESS SECTION ****************************************** -->          
         <h3>Address</h3>
         <div formGroupName="address">
           <div
             *ngFor="
-              let dynamicField of dynamicFields['address'];
-              trackBy: trackById
-            "
-          >
+              let dynamicField of dynamicFields['address']; trackBy: trackById">
             <ng-container [ngSwitch]="dynamicField.type">
+
               <ng-container *ngSwitchCase="formFieldTypes.text">
                 <mat-form-field class="full-width">
                   <mat-label>
@@ -136,6 +136,7 @@
             </ng-container>
           </div>
         </div>
+
         <div class="form-buttons">
           <button
             mat-raised-button
