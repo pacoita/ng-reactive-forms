@@ -16,12 +16,16 @@ For this, we need to implement an `Asynchronous Validator` that will receive the
 
 **Note:** when dealing with asnychronous validation, always remember to provide a visual element informing the user that the validation is pending (e.g., a loading spinner).
 
+
 ## Dynamic Form Fields
 In some cases, we might need to dynamically add new fields to our form at runtime.
 
 However, we do not know how many field will be created, as this might depend on the user. Thanks to `FormArrays` we can manage dyanamic collections of `FormControls` with ease.
 
-![image](https://user-images.githubusercontent.com/13237093/156927352-17ff34fc-a86b-4d09-b097-e40758468599.png)
+The demo also shows how to dynamically add and remove validators to other form fields with the `setValidators` method. 
+Finally, we can exclude some controls from being sent to the server by setting them as *disabled*. On the other side, if we need to extract and send also disabled values from the form, we can use the `getRawValue` method.
+
+![image](https://user-images.githubusercontent.com/13237093/157322138-c8043d85-5c0c-473f-9275-82a8dfe31164.png)
 
 
 ## Cross Fields Validation
