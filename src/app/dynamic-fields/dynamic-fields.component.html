@@ -3,9 +3,10 @@
   <div class="card">
     <p class="demo-description">
       In this example, we want start with a form with just two fields.<br /><br />
-      However, we might need to dynamically add new controls at runtime and we 
-      do not know how many as this might depend on the user. Thanks to <code>FormArrays</code> we can manage dyanamic collections
-      of <code>FormControls</code> with ease.
+      However, we might need to dynamically add new controls at runtime and we
+      do not know how many as this might depend on the user. Thanks to
+      <code>FormArrays</code> we can manage dyanamic collections of
+      <code>FormControls</code> with ease.
     </p>
   </div>
   <div class="demo-content">
@@ -16,30 +17,52 @@
         <span>
         💡 Nice for debugging!
         </span>
-      </pre>      
+      </pre>
     </div>
     <div class="form-container shadow">
-      <form [formGroup]="addressForm" class="card" autocomplete="off">
+      <form
+        (ngSubmit)="submitData()"
+        [formGroup]="addressForm"
+        class="card"
+        autocomplete="off">
+
+        <mat-form-field class="full-width">
+          <mat-label>FormId</mat-label>
+          <input matInput formControlName="formId" />
+        </mat-form-field>
+
         <mat-form-field class="full-width">
           <mat-label>Name</mat-label>
           <input matInput formControlName="firstname" />
-          <mat-error *ngIf="firstname?.hasError('required')">{{
-            "Field required!"
-          }}</mat-error>
+          <mat-error *ngIf="abroadAddress?.hasError('required')">
+            Field required!
+          </mat-error>
         </mat-form-field>
+
         <mat-form-field class="full-width">
           <mat-label>Surname</mat-label>
           <input matInput formControlName="lastname" />
-          <mat-error *ngIf="lastname?.hasError('required')"
-            >Field required!</mat-error
-          >
         </mat-form-field>
+
+        <mat-checkbox formControlName="isAbroad">
+          Is your main address abroad?
+        </mat-checkbox>
+        
+        <mat-form-field class="full-width" *ngIf="isAbroad?.value">
+          <mat-label>Address abroad</mat-label>
+          <input matInput formControlName="abroadAddress" />
+          <mat-error *ngIf="abroadAddress?.hasError('required')">
+            Field required!
+          </mat-error>
+        </mat-form-field>
+
         <div class="add-button">
           <button
             type="button"
             mat-raised-button
             color="primary"
-            (click)="addAddress()">
+            (click)="addAddress()"
+          >
             Add address
           </button>
         </div>
@@ -70,6 +93,19 @@
                 </button>
               </div>
             </div>
+          </div>
+        </div>
+        <div class="form-buttons">
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            [disabled]="!addressForm?.valid"
+          >
+            Submit
+          </button>
+          <div class="submit-success" *ngIf="payload">
+            <pre> {{ payload }}</pre>
           </div>
         </div>
       </form>
