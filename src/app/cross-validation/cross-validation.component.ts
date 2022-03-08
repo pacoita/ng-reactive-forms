@@ -38,7 +38,6 @@ export class CrossValidationComponent {
   );
 
   shipOrder() {
-    this.orderForm.markAllAsTouched();
     if (this.orderForm.valid) {
       this.orderShipped = true;
     }

@@ -6,7 +6,7 @@
       A typical case, for instance, is checking if a username or email has been already 
       taken while registering a new account.<br /><br />
       For this, we need to implement an <code>Asynchronous Validator</code> that will receive the 
-      server response and generate a <code>ValidationError</code> in case the validation is not succesful, <code>null</code>, otherwise.
+      server response and generate a <code>ValidationError</code> in case the validation is not succesful, <code>null</code>, otherwise.      
     </p>
   </div>
   <div class="demo-content">
@@ -14,8 +14,7 @@
       <form
         (ngSubmit)="register()"
         [formGroup]="registerForm"
-        autocomplete="off"
-      >
+        autocomplete="off">
         <div class="title">
           <h2>Register to coffee & co.</h2>
           <mat-icon>local_cafe</mat-icon>
@@ -61,13 +60,14 @@
             mat-raised-button
             color="primary"
             type="submit"
-            [disabled]="!registerForm?.valid"
-          >
+            [disabled]="!registerForm?.valid">
             Sign up
           </button>
+
           <div class="spinner">
             <mat-spinner diameter="30" *ngIf="username?.pending"></mat-spinner>
           </div>
+        
         </div>
         <div class="submit-success" *ngIf="registerSuccess">
           Yey! Can you already feel the coffeine?

@@ -20,6 +20,9 @@ export class DynamicFieldsComponent implements OnInit, OnDestroy {
 
   constructor(private fb: FormBuilder) {}
 
+  get registerForOther() {
+    return this.addressForm.get('registerForOther');
+  }
   get firstname() {
     return this.addressForm.get('firstname');
   }
@@ -43,22 +46,37 @@ export class DynamicFieldsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.addressForm = this.fb.group({
       formId: [{ value: '12345', disabled: true }],
-      firstname: ['', Validators.required],
+      registerForOther: [false],
+      firstname: [''],
       lastname: [''],
       isAbroad: [false],
       abroadAddress: [{ value: '', disabled: true }, Validators.required],
       addresses: this.fb.array([]),
     });
 
+    this.registerValueChanges();
+  }
+
+  registerValueChanges() {
+    this.registerForOther?.valueChanges
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((checked) => {
+        if (checked) {
+          this.firstname?.setValidators([Validators.required]);
+          this.lastname?.setValidators([Validators.required]);
+        } else {
+          this.firstname?.removeValidators([Validators.required]);
+          this.lastname?.removeValidators([Validators.required]);
+        }
+        this.firstname?.updateValueAndValidity();
+        this.lastname?.updateValueAndValidity();
+      });
+
     this.isAbroad?.valueChanges
       .pipe(takeUntil(this.destroy$))
       .subscribe((checked) => {
         checked ? this.abroadAddress?.enable() : this.abroadAddress?.disable();
       });
-  }
-
-  ngOnDestroy(): void {
-    this.destroy$.next(true);
   }
 
   newAddress(): FormGroup {
@@ -77,7 +95,6 @@ export class DynamicFieldsComponent implements OnInit, OnDestroy {
   }
 
   submitData() {
-    this.addressForm.markAllAsTouched();
     if (this.addressForm.valid) {
       this.payload = `
       > Using .value:
@@ -86,5 +103,9 @@ export class DynamicFieldsComponent implements OnInit, OnDestroy {
       ${JSON.stringify(this.addressForm.getRawValue())}
       `;
     }
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next(true);
   }
 }

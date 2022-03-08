@@ -7,6 +7,10 @@
       do not know how many as this might depend on the user. Thanks to
       <code>FormArrays</code> we can manage dyanamic collections of
       <code>FormControls</code> with ease.
+      <br><br>
+      The demo also shows how to dynamically add and remove validators to other form fields with the <code>setValidators</code>
+      method. Finally, we can exclude some controls from being sent to the server, by setting them to disabled.
+      However, if we also need to extract disabled values from the form, we can use the <code>getRawValue</code> method.
     </p>
   </div>
   <div class="demo-content">
@@ -31,6 +35,10 @@
           <input matInput formControlName="formId" />
         </mat-form-field>
 
+        <mat-checkbox formControlName="registerForOther">
+          I am registering for another user
+        </mat-checkbox>
+
         <mat-form-field class="full-width">
           <mat-label>Name</mat-label>
           <input matInput formControlName="firstname" />
@@ -42,12 +50,15 @@
         <mat-form-field class="full-width">
           <mat-label>Surname</mat-label>
           <input matInput formControlName="lastname" />
+          <mat-error *ngIf="abroadAddress?.hasError('lastname')">
+            Field required!
+          </mat-error>
         </mat-form-field>
 
         <mat-checkbox formControlName="isAbroad">
           Is your main address abroad?
         </mat-checkbox>
-        
+
         <mat-form-field class="full-width" *ngIf="isAbroad?.value">
           <mat-label>Address abroad</mat-label>
           <input matInput formControlName="abroadAddress" />
@@ -61,8 +72,7 @@
             type="button"
             mat-raised-button
             color="primary"
-            (click)="addAddress()"
-          >
+            (click)="addAddress()">
             Add address
           </button>
         </div>
@@ -100,8 +110,7 @@
             mat-raised-button
             color="primary"
             type="submit"
-            [disabled]="!addressForm?.valid"
-          >
+            [disabled]="!addressForm?.valid">
             Submit
           </button>
           <div class="submit-success" *ngIf="payload">
