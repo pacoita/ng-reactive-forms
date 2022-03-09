@@ -31,6 +31,11 @@ const routes: Routes = [
         (m) => m.DynamicGenerationModule
       ),
   },
+  {
+    path: 'about',
+    loadChildren: () =>
+      import('./about/about.module').then((m) => m.AboutModule),
+  },
   { path: '**', redirectTo: 'cross' },
 ];
 

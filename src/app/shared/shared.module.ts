@@ -9,6 +9,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   imports: [CommonModule],
@@ -23,6 +24,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatTooltipModule,
     MatProgressSpinnerModule,
     MatSelectModule,
+    MatCardModule,
   ],
 })
 export class SharedModule {}
