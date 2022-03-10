@@ -28,7 +28,7 @@ Finally, we can exclude some controls from being sent to the server by setting t
 ![image](https://user-images.githubusercontent.com/13237093/157322138-c8043d85-5c0c-473f-9275-82a8dfe31164.png)
 
 
-## Cross Fields Validation
+## Dynamically Generated Forms
 The forms in this demo are completely dynamic and generated at runtime. This gives us extreme flexibility since we can create our forms layout on demand.
 
 We invoke a backend API to receive the configuration file and use it to create the `FormControls` and validation rules accordingly.
