@@ -16,12 +16,14 @@
   <div class="demo-content">
     <div class="form-value">
       <mat-checkbox [formControl]="showValueCtrl">Show form value</mat-checkbox>
+
       <pre *ngIf="showValueCtrl.value" class="card">
         {{ addressForm.value | json }}
         <span>
         💡 Nice for debugging!
         </span>
       </pre>
+
     </div>
     <div class="form-container shadow">
       <form
@@ -81,6 +83,7 @@
             Seriously, how many addresses do you have??
           </p>
           <div *ngFor="let address of addresses.controls; let i = index">
+
             <div [formGroupName]="i" class="address-group">
               <div class="address-fields">
                 <mat-form-field class="width-80">
@@ -113,9 +116,6 @@
             [disabled]="!addressForm?.valid">
             Submit
           </button>
-          <div class="submit-success" *ngIf="payload">
-            <pre> {{ payload }}</pre>
-          </div>
         </div>
       </form>
     </div>

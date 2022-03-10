@@ -102,6 +102,9 @@ export class DynamicFieldsComponent implements OnInit, OnDestroy {
       > Using .getRawValue():
       ${JSON.stringify(this.addressForm.getRawValue())}
       `;
+
+      console.log(this.payload);
+      
     }
   }
 
