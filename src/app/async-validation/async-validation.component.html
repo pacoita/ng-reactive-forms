@@ -28,6 +28,7 @@
             formControlName="name"
           />
         </mat-form-field>
+
         <mat-form-field class="width-80">
           <mat-label>Username</mat-label>
           <input matInput formControlName="username" />
@@ -41,11 +42,13 @@
             Unfortunately the username is already taken.
           </mat-error>
         </mat-form-field>
+
         <mat-form-field class="width-80">
           <mat-label>Password</mat-label>
           <input matInput type="password" formControlName="pwd" />
           <mat-error *ngIf="pwd?.hasError('required')">Field required!</mat-error>
         </mat-form-field>
+
         <div class="terms-conditions">
           <mat-checkbox
             #tooltip="matTooltip"
@@ -55,6 +58,7 @@
             >I read the Terms and Conditions</mat-checkbox
           >
         </div>
+
         <div class="form-buttons">
           <button
             mat-raised-button
@@ -65,6 +69,7 @@
           </button>
 
           <div class="spinner">
+            <!-- type FormControlStatus = 'VALID' | 'INVALID' | 'PENDING' | 'DISABLED'; -->
             <mat-spinner diameter="30" *ngIf="username?.pending"></mat-spinner>
           </div>
         

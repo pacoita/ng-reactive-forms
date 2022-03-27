@@ -27,7 +27,7 @@ export class AsyncValidationComponent {
       [UserValidator.usernameValidator(this.userService)],
     ],
     pwd: ['', [Validators.required]],
-    terms: ['', [Validators.required]],
+    terms: [false, [Validators.requiredTrue]],
   });
 
   register() {
