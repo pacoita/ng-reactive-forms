@@ -65,7 +65,7 @@ const configs = {
         fieldId: 'companyName',
         type: FormFieldType.text,
         label: 'Company Name',
-        value: 'Trivadis',
+        value: 'Best Piadina SPA',
         required: true,
       },
       {

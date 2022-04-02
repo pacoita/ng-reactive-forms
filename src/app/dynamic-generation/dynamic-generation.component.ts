@@ -19,7 +19,7 @@ export class DynamicGenerationComponent implements OnInit, OnDestroy {
   form?: FormGroup;
   dynamicFields?: { [groupName: string]: FormFieldConfig[] };
   formFieldTypes = FormFieldType;
-  currentUserRole: 'user' | 'admin' = 'user';
+  currentUserRole: 'user' | 'admin' = 'user'; // Default value: user
 
   saveSuccess = false;
 

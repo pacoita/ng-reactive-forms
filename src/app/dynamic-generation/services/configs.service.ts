@@ -16,11 +16,11 @@ export class ConfigsService {
   ): Observable<{ [groupName: string]: FormFieldConfig[] }> {
     return this.useLocalCode(userType);
 
-    // If you want to use Deno as server, you the method below.
-    // Remeber to start the Deno server first from the
-    // folder: backprivate useDenoServer() {}end/server.ts  (All details are in the Backend/README file)
-
     // return this.useDenoServer(userType);
+
+    // If you want to use Deno as server, uncomment the method above.
+    // Remeber to start the Deno server first from the folder: backend/server.ts
+    // (All details are in the Backend/README file)
   }
 
   private useLocalCode(userType: 'user' | 'admin') {
@@ -92,7 +92,7 @@ export class ConfigsService {
             fieldId: 'companyName',
             type: FormFieldType.text,
             label: 'Company Name',
-            value: 'Trivadis',
+            value: 'Best Piadina SPA',
             required: true,
           },
           {

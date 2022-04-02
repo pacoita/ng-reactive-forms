@@ -9,6 +9,8 @@ export interface FormFieldConfig {
 
   // Options is used for drop-down elements
   options?: SelectOptions[];
+
+  // State flags
   disabled?: boolean;
   required?: boolean;
 }
