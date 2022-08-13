@@ -1,0 +1,30 @@
+<form (ngSubmit)="shipOrder()" [formGroup]="packageOrderForm" autocomplete="off">
+    <mat-form-field class="full-width">
+        <mat-label>Customer name</mat-label>
+        <input matInput formControlName="customerName" />
+        <mat-error *ngIf="customerName?.hasError('required')">
+            {{ "Field required!" }}</mat-error>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+        <mat-label>Qty (kg)</mat-label>
+        <input matInput type="number" min="1" formControlName="qty" />
+        <mat-error *ngIf="qty?.hasError('required')">{{ "Field required!" }}</mat-error>
+        <mat-error *ngIf="qty?.hasError('min')">{{ "Wrong quantity!" }}</mat-error>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+        <mat-label>Select a package</mat-label>
+        <mat-select formControlName="packageType">
+            <mat-option *ngFor="let package of packages" [value]="package.value">
+              {{ package.label }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-error *ngIf="packageOrderForm?.hasError('invalidPackage')">
+            {{ "The order quantity does not match the selected package!" }}
+        </mat-error>
+    <div class="form-buttons">
+        <button mat-raised-button color="primary" type="submit" [disabled]="!packageOrderForm.valid">
+            Order!
+        </button>
+    </div>
+</form>

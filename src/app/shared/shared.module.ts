@@ -25,6 +25,7 @@ import { MatCardModule } from '@angular/material/card';
     MatProgressSpinnerModule,
     MatSelectModule,
     MatCardModule,
+    MatSelectModule
   ],
 })
 export class SharedModule {}
