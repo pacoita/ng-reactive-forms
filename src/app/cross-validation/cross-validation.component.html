@@ -33,14 +33,14 @@
         </mat-form-field>
         <mat-form-field class="full-width">
           <mat-label>Qty (kg)</mat-label>
-          <input matInput type="number" formControlName="qty" />
+          <input matInput type="number" min="0" formControlName="qty" />
           <mat-error *ngIf="qty?.hasError('required')">{{
             "Field required!"
           }}</mat-error>
         </mat-form-field>
         <mat-form-field class="full-width">
           <mat-label>Confirm quantity (kg)</mat-label>
-          <input matInput type="number" formControlName="qtyConfirm" />
+          <input matInput type="number" min="0" formControlName="qtyConfirm" />
           <mat-error *ngIf="qtyConfirm?.hasError('required')">{{
             "Field required!"
           }}</mat-error>
