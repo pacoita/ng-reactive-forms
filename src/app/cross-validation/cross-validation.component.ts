@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormBuilder, Validators } from '@angular/forms';
 import { orderValidator } from './validators/order-validator';
 
 @Component({
@@ -21,7 +21,7 @@ export class CrossValidationComponent {
     return this.orderForm.get('qtyConfirm');
   }
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: UntypedFormBuilder) {}
 
   orderForm = this.fb.group(
     {

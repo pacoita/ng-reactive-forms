@@ -5,7 +5,7 @@ import {
   OnInit,
   OnDestroy,
 } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-dynamic-fields',
@@ -14,11 +14,11 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DynamicFieldsComponent implements OnInit, OnDestroy {
-  addressForm!: FormGroup;
+  addressForm!: UntypedFormGroup;
   submitSuccess = false;
   payload = '';
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: UntypedFormBuilder) {}
 
   get registerForOther() {
     return this.addressForm.get('registerForOther');
@@ -36,7 +36,7 @@ export class DynamicFieldsComponent implements OnInit, OnDestroy {
     return this.addressForm.get('abroadAddress');
   }
   get addresses() {
-    return this.addressForm.get('addresses') as FormArray;
+    return this.addressForm.get('addresses') as UntypedFormArray;
   }
 
   showValueCtrl = this.fb.control(false);
@@ -79,7 +79,7 @@ export class DynamicFieldsComponent implements OnInit, OnDestroy {
       });
   }
 
-  newAddress(): FormGroup {
+  newAddress(): UntypedFormGroup {
     return this.fb.group({
       street: '',
       city: '',

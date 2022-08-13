@@ -1,7 +1,7 @@
 import { UserService } from '../shared/services/user.service';
 import { UserValidator } from './validators/user-validator';
 import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-async-validation',
@@ -17,7 +17,7 @@ export class AsyncValidationComponent {
   get pwd() {
     return this.registerForm.get('pwd');
   }
-  constructor(private fb: FormBuilder, private userService: UserService) {}
+  constructor(private fb: UntypedFormBuilder, private userService: UserService) {}
 
   registerForm = this.fb.group({
     name: [''],

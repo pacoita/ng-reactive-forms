@@ -1,7 +1,7 @@
 import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
+  UntypedFormBuilder,
+  UntypedFormControl,
+  UntypedFormGroup,
   Validators,
 } from '@angular/forms';
 import { Component, OnDestroy, OnInit } from '@angular/core';
@@ -16,7 +16,7 @@ import { Subject, takeUntil } from 'rxjs';
   styleUrls: ['./dynamic-generation.component.scss'],
 })
 export class DynamicGenerationComponent implements OnInit, OnDestroy {
-  form?: FormGroup;
+  form?: UntypedFormGroup;
   dynamicFields?: { [groupName: string]: FormFieldConfig[] };
   formFieldTypes = FormFieldType;
   currentUserRole: 'user' | 'admin' = 'user'; // Default value: user
@@ -26,7 +26,7 @@ export class DynamicGenerationComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<boolean>();
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private employeeService: ConfigsService
   ) {}
 
@@ -61,7 +61,7 @@ export class DynamicGenerationComponent implements OnInit, OnDestroy {
       .subscribe((configs: { [groupName: string]: FormFieldConfig[] }) => {
         this.dynamicFields = configs;
 
-        const formControls: { [key: string]: FormControl } = {};
+        const formControls: { [key: string]: UntypedFormControl } = {};
         for (const groupName in configs) {
           configs[groupName].forEach((control: FormFieldConfig) => {
             formControls[control.fieldId] = this.fb.control(
