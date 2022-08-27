@@ -31,6 +31,9 @@ export class AsyncValidationComponent {
   });
 
   register() {
-    this.registerSuccess = true;
+    this.registerForm.markAllAsTouched();
+    if (this.registerForm.valid) {
+      this.registerSuccess = true;
+    }
   }
 }
