@@ -1,6 +1,18 @@
+.description {
+  margin: 2rem 0;
+
+}
+
 .demo-content {
   display: flex;
   max-width: 750px;
+  &:last-child {
+    margin-bottom: 3rem;
+  }
+
+  .form-centered {
+    margin: 0 auto;
+  }
 
   .form-value {
     margin-right: 2rem;
