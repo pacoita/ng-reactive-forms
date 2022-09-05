@@ -136,6 +136,9 @@
           <mat-error *ngIf="registrationAddress?.hasError('minlength')">
             The address must contain at least 5 characters!
           </mat-error>
+          <mat-error *ngIf="registrationAddress?.hasError('maxlength')">
+            The address cannot be longer than 30 characters!
+          </mat-error>
         </mat-form-field>
 
         <mat-form-field class="full-width">

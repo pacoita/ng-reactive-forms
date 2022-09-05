@@ -57,6 +57,10 @@ export class DynamicFieldsComponent implements OnInit, OnDestroy {
     return this.registrationForm.get('name');
   }
 
+  get userProfile() {
+    return this.registrationForm.get('userProfile');
+  }
+
   get registrationAddress() {
     return this.registrationForm.get('address');
   }
@@ -112,11 +116,17 @@ export class DynamicFieldsComponent implements OnInit, OnDestroy {
         checked ? this.abroadAddress?.enable() : this.abroadAddress?.disable();
       });
 
-      
       this.registrationAbroad?.valueChanges
       .pipe(takeUntil(this.destroy$))
       .subscribe((checked) => {
         checked ? this.registrationAddress?.addValidators([Validators.required, Validators.minLength(5)]) : this.registrationAddress?.removeValidators([Validators.required, Validators.minLength(5)]);
+        this.registrationAddress?.updateValueAndValidity();
+      });
+
+      this.userProfile?.valueChanges
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((profile) => {
+        profile === 'student' ? this.registrationAddress?.addValidators([Validators.maxLength(30)]) : this.registrationAddress?.removeValidators([Validators.maxLength(30)]);
         this.registrationAddress?.updateValueAndValidity();
       });
   }
