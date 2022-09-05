@@ -8,7 +8,8 @@
       <code>FormArrays</code> we can manage dyanamic collections of
       <code>FormControls</code> with ease.
       <br><br>
-      The demo also shows how to dynamically add and remove validators to other form fields with the <code>setValidators</code>
+      The demo also shows how to dynamically add and remove validators to other form fields with the
+      <code>setValidators</code>
       method. Finally, we can exclude some controls from being sent to the server, by setting them to disabled.
       However, if we also need to extract disabled values from the form, we can use the <code>getRawValue</code> method.
     </p>
@@ -26,11 +27,7 @@
 
     </div>
     <div class="form-container shadow">
-      <form
-        (ngSubmit)="submitData()"
-        [formGroup]="addressForm"
-        class="card"
-        autocomplete="off">
+      <form (ngSubmit)="submitData(addressForm)" [formGroup]="addressForm" class="card" autocomplete="off">
 
         <mat-form-field class="full-width">
           <mat-label>FormId</mat-label>
@@ -70,11 +67,7 @@
         </mat-form-field>
 
         <div class="add-button">
-          <button
-            type="button"
-            mat-raised-button
-            color="primary"
-            (click)="addAddress()">
+          <button type="button" mat-raised-button color="primary" (click)="addAddress()">
             Add address
           </button>
         </div>
@@ -96,12 +89,7 @@
                 </mat-form-field>
               </div>
               <div class="address-actions">
-                <button
-                  mat-icon-button
-                  color="warn"
-                  title="Remove address"
-                  (click)="removeAddress(i)"
-                >
+                <button mat-icon-button color="warn" title="Remove address" (click)="removeAddress(i)">
                   <mat-icon>clear</mat-icon>
                 </button>
               </div>
@@ -109,11 +97,58 @@
           </div>
         </div>
         <div class="form-buttons">
-          <button
-            mat-raised-button
-            color="primary"
-            type="submit"
-            [disabled]="!addressForm.valid">
+          <button mat-raised-button color="primary" type="submit" [disabled]="!addressForm.valid">
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+  <p class="description card">
+    <b>Below is another example of dynamic validation.</b>
+    If the isAbroad field is true, this field becomes mandatory and must have a length of at least 5 characters.
+    If isAbroad value changes to false, the address field becomes optional again, without any minimum length
+    restriction.
+  </p>
+  <div class="demo-content">
+    <div class="form-container form-centered shadow">
+      <form (ngSubmit)="submitData(registrationForm)" [formGroup]="registrationForm" class="card" autocomplete="off">
+
+        <mat-form-field class="full-width">
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name" />
+          <mat-error *ngIf="abroadAddress?.hasError('required')">
+            Field required!
+          </mat-error>
+        </mat-form-field>
+
+        <mat-checkbox formControlName="isAbroad">
+          Address abroad
+        </mat-checkbox>
+
+        <mat-form-field class="full-width">
+          <mat-label>Address</mat-label>
+          <input matInput formControlName="address" />
+          <mat-error *ngIf="registrationAddress?.hasError('required')">
+            Field required!
+          </mat-error>
+          <mat-error *ngIf="registrationAddress?.hasError('minlength')">
+            The address must contain at least 5 characters!
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <mat-label>User Profile</mat-label>
+          <mat-select formControlName="userProfile">
+              <mat-option *ngFor="let profile of userProfiles" [value]="profile.value">
+                {{ profile.label }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        
+        <div class="form-buttons">
+          <button mat-raised-button color="primary" type="submit" [disabled]="!registrationForm.valid">
             Submit
           </button>
         </div>
