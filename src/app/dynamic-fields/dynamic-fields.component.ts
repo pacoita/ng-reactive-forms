@@ -96,6 +96,12 @@ export class DynamicFieldsComponent implements OnInit, OnDestroy {
   }
 
   registerValueChanges() {
+    // Once we add a validator to a control we must use 
+    // the same reference as the one that was originally set to remove it 
+    const required = Validators.required;
+    const minLength = Validators.minLength(5);
+    const maxLength = Validators.maxLength(30);
+
     this.registerForOther?.valueChanges
       .pipe(takeUntil(this.destroy$))
       .subscribe((checked) => {
@@ -119,14 +125,14 @@ export class DynamicFieldsComponent implements OnInit, OnDestroy {
       this.registrationAbroad?.valueChanges
       .pipe(takeUntil(this.destroy$))
       .subscribe((checked) => {
-        checked ? this.registrationAddress?.addValidators([Validators.required, Validators.minLength(5)]) : this.registrationAddress?.removeValidators([Validators.required, Validators.minLength(5)]);
+        checked ? this.registrationAddress?.addValidators([required, minLength]) : this.registrationAddress?.removeValidators([required, minLength]);
         this.registrationAddress?.updateValueAndValidity();
       });
 
       this.userProfile?.valueChanges
       .pipe(takeUntil(this.destroy$))
       .subscribe((profile) => {
-        profile === 'student' ? this.registrationAddress?.addValidators([Validators.maxLength(30)]) : this.registrationAddress?.removeValidators([Validators.maxLength(30)]);
+        profile === 'student' ? this.registrationAddress?.addValidators([maxLength]) : this.registrationAddress?.removeValidators([maxLength]);
         this.registrationAddress?.updateValueAndValidity();
       });
   }
@@ -147,6 +153,7 @@ export class DynamicFieldsComponent implements OnInit, OnDestroy {
   }
 
   submitData(form: FormGroup) {
+    form.markAllAsTouched();
     if (form.valid) {
       this.payload = `
       > Using .value:
