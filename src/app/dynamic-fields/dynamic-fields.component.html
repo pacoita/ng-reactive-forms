@@ -41,7 +41,7 @@
         <mat-form-field class="full-width">
           <mat-label>Name</mat-label>
           <input matInput formControlName="firstname" />
-          <mat-error *ngIf="abroadAddress?.hasError('required')">
+          <mat-error *ngIf="firstname?.hasError('required')">
             Field required!
           </mat-error>
         </mat-form-field>
@@ -49,7 +49,7 @@
         <mat-form-field class="full-width">
           <mat-label>Surname</mat-label>
           <input matInput formControlName="lastname" />
-          <mat-error *ngIf="abroadAddress?.hasError('lastname')">
+          <mat-error *ngIf="lastname?.hasError('lastname')">
             Field required!
           </mat-error>
         </mat-form-field>

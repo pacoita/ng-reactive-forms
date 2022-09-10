@@ -81,7 +81,10 @@ export class DynamicFieldsComponent implements OnInit, OnDestroy {
       lastname: [''],
       isAbroad: [false],
       abroadAddress: [{ value: '', disabled: true }, Validators.required],
-      addresses: this.fb.array([]),
+      addresses: this.fb.array([this.fb.group({
+        street: '',
+        city: '',
+      })]),
     });  
 
     this.registrationForm = this.fb.group({
