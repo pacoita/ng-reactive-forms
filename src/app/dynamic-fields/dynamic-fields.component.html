@@ -144,14 +144,93 @@
         <mat-form-field class="full-width">
           <mat-label>User Profile</mat-label>
           <mat-select formControlName="userProfile">
-              <mat-option *ngFor="let profile of userProfiles" [value]="profile.value">
-                {{ profile.label }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        
+            <mat-option *ngFor="let profile of userProfiles" [value]="profile.value">
+              {{ profile.label }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
         <div class="form-buttons">
           <button mat-raised-button color="primary" type="submit" [disabled]="!registrationForm.valid">
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <p class="description card">
+    <b>The form below is an example for adding/removing nested form portions.</b>
+    It represents a ticketing registration form, where further attendees can be dynamically added.
+  </p>
+  <div class="demo-content">
+    <div class="form-container form-centered shadow">
+      <form (ngSubmit)="submitData(registrationForm)" [formGroup]="registrationTicketForm" class="card" autocomplete="off">
+
+        <mat-form-field class="full-width">
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name" />
+          <mat-error *ngIf="customerName?.hasError('required')">
+            Field required!
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <mat-label>Company name</mat-label>
+          <input matInput formControlName="companyName" />
+          <mat-error *ngIf="companyName?.hasError('required')">
+            Field required!
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <mat-label>Job title</mat-label>
+          <input matInput formControlName="jobTitle" />
+        </mat-form-field>
+        <div class="add-button">
+          <button type="button" mat-raised-button color="primary" (click)="addParticipant()">
+            Add participant
+          </button>
+        </div>
+        <div formArrayName="participants">
+          <div *ngFor="let participant of participants.controls; let i = index">
+
+            <div [formGroupName]="i" class="address-group">
+              <div>
+
+                <mat-form-field class="width-80">
+                  <mat-label>Name</mat-label>
+                  <input matInput formControlName="name" />
+                  <mat-error *ngIf="customerName?.hasError('required')">
+                    Field required!
+                  </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="width-80">
+                  <mat-label>Company name</mat-label>
+                  <input matInput formControlName="companyName" />
+                  <mat-error *ngIf="companyName?.hasError('required')">
+                    Field required!
+                  </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="width-80">
+                  <mat-label>Job title</mat-label>
+                  <input matInput formControlName="jobTitle" />
+                </mat-form-field>
+              </div>
+
+              <div class="address-actions">
+                <button mat-icon-button color="warn" title="Remove participant" (click)="removeParticipan(i)">
+                  <mat-icon>clear</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-buttons">
+          <button mat-raised-button color="primary" type="submit" [disabled]="!registrationTicketForm.valid">
             Submit
           </button>
         </div>

@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { FormArray, NonNullableFormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RegistrationForm } from './model/registration-form.model';
+import { RegistrationTicketForm } from './model/registration-ticket.model';
 
 @Component({
   selector: 'app-dynamic-fields',
@@ -17,6 +18,7 @@ import { RegistrationForm } from './model/registration-form.model';
 export class DynamicFieldsComponent implements OnInit, OnDestroy {
   addressForm!: FormGroup;
   registrationForm!: FormGroup<RegistrationForm>;
+  registrationTicketForm!: FormGroup<RegistrationTicketForm>;
   submitSuccess = false;
   payload = '';
 
@@ -28,9 +30,9 @@ export class DynamicFieldsComponent implements OnInit, OnDestroy {
     label: 'Worker',
     value: 'worker'
   }
-]
+  ]
 
-  constructor(private fb: NonNullableFormBuilder) {}
+  constructor(private fb: NonNullableFormBuilder) { }
 
   // Address form fields
   get registerForOther() {
@@ -69,6 +71,17 @@ export class DynamicFieldsComponent implements OnInit, OnDestroy {
     return this.registrationForm.get('isAbroad');
   }
 
+  // Ticket form fields
+  get customerName() {
+    return this.registrationTicketForm.get('name');
+  }
+  get companyName() {
+    return this.registrationTicketForm.get('companyName');
+  }
+  get participants() {
+    return this.registrationTicketForm.get('participants') as FormArray;
+  }
+
   showValueCtrl = this.fb.control(false);
 
   private destroy$ = new Subject<boolean>();
@@ -85,7 +98,7 @@ export class DynamicFieldsComponent implements OnInit, OnDestroy {
         street: '',
         city: '',
       })]),
-    });  
+    });
 
     this.registrationForm = this.fb.group({
       name: ['', Validators.required],
@@ -94,6 +107,12 @@ export class DynamicFieldsComponent implements OnInit, OnDestroy {
       userProfile: ['']
     });
 
+    this.registrationTicketForm = this.fb.group({
+      name: ['', Validators.required],
+      companyName: ['', Validators.required],
+      jobTitle: [''],
+      participants: this.fb.array([])
+    });
 
     this.registerValueChanges();
   }
@@ -125,14 +144,14 @@ export class DynamicFieldsComponent implements OnInit, OnDestroy {
         checked ? this.abroadAddress?.enable() : this.abroadAddress?.disable();
       });
 
-      this.registrationAbroad?.valueChanges
+    this.registrationAbroad?.valueChanges
       .pipe(takeUntil(this.destroy$))
       .subscribe((checked) => {
         checked ? this.registrationAddress?.addValidators([required, minLength]) : this.registrationAddress?.removeValidators([required, minLength]);
         this.registrationAddress?.updateValueAndValidity();
       });
 
-      this.userProfile?.valueChanges
+    this.userProfile?.valueChanges
       .pipe(takeUntil(this.destroy$))
       .subscribe((profile) => {
         profile === 'student' ? this.registrationAddress?.addValidators([maxLength]) : this.registrationAddress?.removeValidators([maxLength]);
@@ -155,6 +174,22 @@ export class DynamicFieldsComponent implements OnInit, OnDestroy {
     this.addresses.removeAt(i);
   }
 
+  newParticipant(): FormGroup {
+    return this.fb.group({
+      name: ['', Validators.required],
+      companyName: ['', Validators.required],
+      jobTitle: ['']
+    });
+  }
+  addParticipant(): void {
+    const participant = this.newParticipant();
+    this.participants.push(participant);
+  }
+
+  removeParticipan(i: number) {
+    this.participants.removeAt(i);
+  }
+
   submitData(form: FormGroup) {
     form.markAllAsTouched();
     if (form.valid) {
@@ -166,7 +201,7 @@ export class DynamicFieldsComponent implements OnInit, OnDestroy {
       `;
 
       console.log(this.payload);
-      
+
     }
   }
 

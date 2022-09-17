@@ -6,6 +6,7 @@
 .demo-content {
   display: flex;
   max-width: 750px;
+
   &:last-child {
     margin-bottom: 3rem;
   }
@@ -16,8 +17,9 @@
 
   .form-value {
     margin-right: 2rem;
+
     pre {
-        margin: 1rem 0 0 0;
+      margin: 1rem 0 0 0;
     }
   }
 
@@ -38,7 +40,7 @@
         margin-left: auto;
       }
     }
-    
+
     .form-buttons {
       margin-top: 3rem;
       margin-left: auto;
