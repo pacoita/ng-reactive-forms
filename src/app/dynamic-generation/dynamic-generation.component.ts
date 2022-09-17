@@ -64,8 +64,8 @@ export class DynamicGenerationComponent implements OnInit, OnDestroy {
       .subscribe((configs: { [groupName: string]: FormFieldConfig[] }) => {
         this.dynamicFields = configs;
 
-        const formControls: { [key: string]: FormControl } = {};
         for (const groupName in configs) {
+          const formControls: { [key: string]: FormControl } = {};
           configs[groupName].forEach((control: FormFieldConfig) => {
             formControls[control.fieldId] = this.fb.control(
               {
