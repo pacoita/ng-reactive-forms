@@ -4,9 +4,10 @@ import { DropDown, PackageOrder } from '../model/package-order';
 import { packageValidator } from '../validators/order-validator';
 
 @Component({
-  selector: 'app-package-order',
-  templateUrl: './package-order.component.html',
-  styleUrls: ['./package-order.component.scss']
+    selector: 'app-package-order',
+    templateUrl: './package-order.component.html',
+    styleUrls: ['./package-order.component.scss'],
+    standalone: false
 })
 export class PackageOrderComponent implements OnInit {
 

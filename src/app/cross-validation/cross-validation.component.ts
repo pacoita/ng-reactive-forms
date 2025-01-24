@@ -4,10 +4,11 @@ import { orderValidator } from './validators/order-validator';
 import { CoffeeOrder } from './model/coffee-order';
 
 @Component({
-  selector: 'app-cross-validation',
-  templateUrl: './cross-validation.component.html',
-  styleUrls: ['./cross-validation.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-cross-validation',
+    templateUrl: './cross-validation.component.html',
+    styleUrls: ['./cross-validation.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class CrossValidationComponent implements OnInit {
   orderShipped = false;
