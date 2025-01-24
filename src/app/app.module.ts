@@ -9,8 +9,8 @@ import { DynamicFieldsModule } from './dynamic-fields/dynamic-fields.module';
 import { DynamicGenerationModule } from './dynamic-generation/dynamic-generation.module';
 import { LogComponent } from './log.component';
 import { FormsModule } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
+import { MatLegacyFormFieldModule as MatFormFieldModule } from '@angular/material/legacy-form-field';
+import { MatLegacyInputModule as MatInputModule } from '@angular/material/legacy-input';
 
 @NgModule({
   declarations: [AppComponent, LogComponent],
