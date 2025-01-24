@@ -1,6 +1,5 @@
 import {
   AbstractControl,
-  FormArray,
   FormControl,
   FormGroup,
   NonNullableFormBuilder,
@@ -15,6 +14,7 @@ import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-dynamic-generation',
+  standalone: false,
   templateUrl: './dynamic-generation.component.html',
   styleUrls: ['./dynamic-generation.component.scss'],
 })

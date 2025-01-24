@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-log',
+  standalone: false,
   template: `
   <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
     <mat-form-field class="full-width" appearance="outline">

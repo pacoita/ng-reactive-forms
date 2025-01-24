@@ -5,6 +5,7 @@ import { NonNullableFormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-async-validation',
+  standalone: false,
   templateUrl: './async-validation.component.html',
   styleUrls: ['./async-validation.component.scss'],
 })

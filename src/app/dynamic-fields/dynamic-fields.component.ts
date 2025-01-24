@@ -11,6 +11,7 @@ import { RegistrationTicketForm } from './model/registration-ticket.model';
 
 @Component({
   selector: 'app-dynamic-fields',
+  standalone: false,
   templateUrl: './dynamic-fields.component.html',
   styleUrls: ['./dynamic-fields.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
