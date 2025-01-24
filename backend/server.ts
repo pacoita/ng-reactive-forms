@@ -1,10 +1,10 @@
-import { Application, Router } from 'https://deno.land/x/oak@v10.2.1/mod.ts';
-import { oakCors } from 'https://deno.land/x/cors@v1.2.2/mod.ts';
+import { Application, Router } from 'https://deno.land/x/oak/mod.ts';
+import { oakCors } from 'https://deno.land/x/cors/mod.ts';
 
 import {
   getAllFormConfigs,
   getFormConfigByRole,
-} from './apis/formConfigApis.ts';
+} from './apis/formConfigApis';
 
 const port = 8500;
 const app = new Application();

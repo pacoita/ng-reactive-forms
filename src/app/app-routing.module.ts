@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LogComponent } from './log.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'cross', pathMatch: 'full' },
@@ -35,6 +36,10 @@ const routes: Routes = [
     path: 'about',
     loadChildren: () =>
       import('./about/about.module').then((m) => m.AboutModule),
+  },
+  {
+    path: 'log',
+    component: LogComponent
   },
   { path: '**', redirectTo: 'cross' },
 ];
